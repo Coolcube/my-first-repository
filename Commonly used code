@@ -1,0 +1,696 @@
+省略号 禁止换行 单行文本溢出：
+text-overflow:ellipsis;white-space:nowrap;overflow: hidden;
+ 
+
+多行文本溢出：
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+overflow: hidden;
+
+
+
+st-user：13588249391
+name：unohacha123
+
+
+图片变黑白效果
+-webkit-filter: grayscale(1);
+filter: grayscale(1);
+
+
+鼠标经过图片放大
+ -webkit-transform:scale(1.1); -moz-transform:scale(1.1); -ms-transform:scale(1.1); -o-transform:scale(1.1); transform:scale(1.1);
+
+背景出现倾斜hover效果
+原始{ position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(214, 0, 35, 0.2);
+    background: #D60023\9;
+    filter: alpha(opacity=20);
+    z-index: 20;
+    opacity: 0;
+    transform: skewX(45deg);
+    visibility: hidden;
+    transition: 360ms;}
+
+
+hover{opacity: 1;
+    transform: skewX(0deg);
+    visibility: visible;}
+
+
+投影
+box-shadow: 0 0 28px 4px rgba(0,0,0,0.4)；
+
+好看的投影：
+box-shadow: 0px 20px 30px rgba(0,0,0,0.1);
+
+
+导航的投影:    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
+微软雅黑字体设置
+font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+
+ 
+
+
+获取高度
+$(document).ready(function(){
+$(window).load(function(){
+var h= $(window).height();
+$(".banner").css("height",h);
+})
+})
+
+
+
+$(window).resize(function(){
+var sh = $(window).height();
+$(".banner").css("height",sh);
+$(".warpper").css("margin-top",sh);
+}) 
+
+
+
+
+
+$(window).load(function(){
+	$("body").css("opacity",1);
+	
+	var h = $(window).height();
+	$(".banner").css("height",h-70);
+	$(".bannerheight").css("height",h-70);
+
+})
+
+
+$(window).resize(function(){
+	var sh = $(window).height();
+	$(".banner").css("height",sh-70);
+	$(".bannerheight").css("height",sh-70);
+	
+})
+
+
+
+
+css3一闪一闪效果
+
+#content .space .item-1 .illust-5 {
+	-webkit-animation: blink linear 5s infinite;
+	animation: blink linear 5s infinite;
+	left: 539px;
+	top: 156px;
+}
+
+@-webkit-keyframes blink {
+	0%, 10% { opacity: 1; -webkit-transform: scale(1); }
+	5% { opacity: 0; -webkit-transform: scale(0.5); }
+}
+@keyframes blink {
+	0%, 10% { opacity: 1; transform: scale(1); }
+	5% { opacity: 0; transform: scale(0.5); }
+
+}
+
+
+
+插入视频
+<div class="video1" style="width:100%; height:100%; position:fixed; z-index:-1; top:1px; ">
+
+		<video width="100%" autoplay loop >
+                <source src="swf/bg1.mp4" type="video/mp4">
+            </video>
+</div>
+
+
+
+swiper框架的使用
+
+var mySwiper = new Swiper( '.swiper1', {
+    pagination: '.pagination1',
+	loop: true,
+	autoplay: 5000,
+	slidesPerView:4,
+	spaceBetween: 0,
+	paginationClickable: true,
+} )
+
+$( '.arrow-left1' ).on( 'click', function( e )
+{
+	e.preventDefault()
+	mySwiper.swipePrev()
+} )
+
+$( '.arrow-right1' ).on( 'click', function( e )
+{
+	e.preventDefault()
+	mySwiper.swipeNext()
+} )
+
+$(document).ready(function(){
+
+$(window).resize(function(){
+  $(".swiper1").height($(".tuijian-con").height()+90)
+  
+  
+  
+}) 
+
+$(window).load(function(){
+	$(".swiper1").height($(".tuijian-con").height()+90)
+  
+ 
+})
+}) 
+
+
+<div class="swiper-pagination pagination1" ></div>
+
+
+
+
+input标签点击事件
+<input type="text" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入搜索内容';}" value="请输入搜索内容">
+
+
+
+点击切换出现或消失
+<div class="checkbox_xuanze" style="top:11px;left:20px;">
+     <img src="images/yq.svg" class="no_one" style="width:22px; height:22px;">
+     <img src="images/yq-1.svg" class="no_two" style="width:22px; height:22px;">
+ </div>
+
+<script>
+    $(document).ready(function(e) {
+        $(".checkbox_xuanze").click(function(){
+            $(this).find(".no_two").fadeToggle();
+        })
+    });
+</script>
+
+
+
+
+
+点击评价星星增多或减少JS：
+
+        var length=$(".pj_tubiao").length;
+        for(i=0;i<length;i++){
+            (function(){
+                var k=i;
+                for(j=0;j<5;j++){
+                    (function(){
+                        var l=j;
+                        $(".pj_tubiao").eq(i).find("img").eq(j).click(function(){
+                            for(m=0;m<5;m++){
+                                if(m<=l){
+                                    $(".pj_tubiao").eq(k).find("img").eq(m).attr("src","images/p01.svg");
+                                }else if(m>l){
+                                    $(".pj_tubiao").eq(k).find("img").eq(m).attr("src","images/p01-1.svg");
+                                }
+                            }
+                        })
+                    })()
+                }
+            })()
+        }
+
+
+
+
+点击消失或出现的JS：
+ <div class="list_right">
+            <img src="images/yq.svg" class="no_one" style="width:20px; height:20px;">
+            <img src="images/yq-1.svg" class="no_two"  style="width:20px; height:20px;">
+        </div>
+
+
+ $(document).ready(function(e) {
+        var no_two=$(".list_right .no_two").length;
+        for(i=0;i<no_two;i++){
+            (function(){
+                var k=i;
+                $(".list_right").eq(i).click(function(){
+                    for(x=0;x<no_two;x++){
+                        if(x!=k){
+                            $(".list_right .no_two").eq(x).fadeOut();
+                        }
+                    }
+
+
+                    $(this).find(".no_two").fadeIn();
+                })
+            })()
+        }
+
+    });
+
+注：no_tw事件位
+
+
+
+鼠标滚动某个物体出现事件
+$(window).scroll(function ()
+{
+    var st = $(this).scrollTop();
+    if(st >20){
+        $('.tm-logo').css('paddingTop','0px')
+        $('.tm-logo').css('paddingBottom','0px')
+    }else{
+       if(st<30){
+           $('.tm-logo').css('paddingTop','20px')
+           $('.tm-logo').css('paddingBottom','10px')
+       }
+    }
+	
+	 if($(window).scrollTop()>($(".index-news").offset().top-600)){
+		 
+		 $(".news-bl").animate({width:174},800)
+		 }
+	
+	
+	
+});
+
+
+
+
+点击某个按钮屏幕向下滚动：
+
+$('.scoll-tip').click(function(){
+e=$('#index-product').offset().top;
+$('html,body').stop().animate({
+scrollTop:e-10
+},800)
+})
+
+
+
+引用外部结构：
+<iframe name="ab" scrolling="no" src="partner.html" width="100%" height="580" border="0" frameborder="0" allowTransparency="true" marginwidth="0" marginheight="0" style="background-color=transparent"></iframe>
+
+
+
+
+
+
+内容不停向下滚动：
+<script>
+$(function(){
+			$('.scroll-con .scroll-tip').clone().appendTo('.scroll-con');
+			var fybh=$('.scroll-show').height()+130;
+			var fybh2=fybh/2;
+			var fybhindex=0;
+			var timer_fybh=setInterval(fybhanimate,20);
+			$('.scroll-con').hover(
+					function(){
+						clearInterval(timer_fybh)
+					},function(){
+						timer_fybh=setInterval(fybhanimate,20);
+					}
+			)
+			function fybhanimate(){
+				fybhindex+=1;
+				if(fybhindex>fybh2){
+					fybhindex=0;
+				}
+				$('.scroll-con .scroll-tip').css({top:-fybhindex})
+			}
+		})
+
+
+</script>
+
+
+
+
+
+点击事件获取：
+$(".pro_series_bg li" ).click(function(){
+			var now=$(this ).index();
+			$(this ).addClass("on" ).siblings("li" ).removeClass("on");
+			$(".pro_con" ).hide();
+			$(".pro_con" ).eq(now ).fadeIn("fast");
+		})
+
+
+
+水平居中和上下居中：
+
+
+
+垂直居中：
+	父级： display: table;
+	子级：display: table-cell;vertical-align: middle;
+
+
+水平居中：父级： text-align:center
+
+          子级：display:inline-block
+
+水平平分：
+.home_panter .container {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+}
+.home_panter a {
+	-webkit-flex-grow: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+}
+
+
+
+动态小加号效果：
+webkit-animation-name: pounding;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-name: pounding;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+
+
+
+在链接处添加锚点，可以点击到指定地方JS：
+<script>
+
+$(window).load(function(){
+	$("html,body").animate({scrollTop:0},0)
+	 var url = window.location.toString();
+
+
+    var id = url.split("#")[1];
+
+
+   if(id){ 
+
+     setTimeout(function(){
+      var t = $("#"+id).offset().top;
+		 $("html,body").animate({scrollTop:t-80},1000)
+     },500) 
+   }
+   
+   $('a').click(function(){
+	       var a=$(this).attr("href").split("#")[1];
+           var p=$("#"+a).offset().top;
+	       $("html,body").animate({scrollTop:p-100},1000);
+	   })	
+})
+
+
+</script>
+
+
+
+
+
+背景变透明写法：
+background:rgba(255,255,255,0.8);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCffffff,endColorstr=#CCffffff); ?
+
+兼容最高版本IE或者极速模式
+兼容IE8和以上的版本及极速模式
+
+
+rgba的值：IEfilter值：
+0.1-19    
+0.2-33   
+0.3-4C
+   0.4-66   
+0.5-7F   
+0.6-99
+   0.7-B2
+   0.8-CC    
+0.9-E5
+  1.0-FF
+
+
+
+
+
+
+
+
+鼠标点击按钮导航下拉：
+
+<script>
+$(".index_menu_btn").click(function(){
+	$(".index_nav").stop().slideToggle(300);
+	})
+
+
+</script>
+
+
+
+加滚动条：
+
+overflow-y: auto;
+height: 100%;
+
+
+
+
+透明度自适应正确写法：
+filter:alpha(opacity=0); -moz-opacity:0; -khtml-opacity:0; opacity:0;
+
+
+
+远程输入：
+mstsc
+
+
+
+获取第几个数值特殊用法：
+
+给div加上 at-ind='7'
+
+
+ $(".notice_con").click(function(){
+		   
+		   var ind=$(this).attr("at-ind");
+		   console.log(ind);
+	      $(".sign_con").hide();
+		   $(".sign_con").eq(ind).fadeIn();
+		   
+		   })
+	  
+		$(".close_icon").click(function(){
+			
+			$(".sign_con").fadeOut()
+			
+			})	
+
+
+
+
+
+
+
+在IE8情况下JS写法：
+
+if(navigator.appName == "Microsoft Internet Explorer" && (navigator.appVersion.match(/7./i)=="7." || navigator.appVersion.match(/8./i)=="8.")) { 
+
+
+	
+}else{   
+
+
+
+ }
+
+
+
+
+返回上一页的js：
+javascript:history.go(-1);
+
+
+
+
+canvas画矩形：
+
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+
+var c=document.getElementById("myCanvas");
+var cxt=c.getContext("2d");
+cxt.fillRect(0,0,150,75);
+
+</script>
+ 
+
+
+canvas画规则形状：
+
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+
+var c=document.getElementById("myCanvas");
+var cxt=c.getContext("2d");
+cxt.moveTo(75,10);
+cxt.lineTo(10,50);
+cxt.lineTo(150,50);
+cxt.lineTo(75,10);
+cxt.lineWidth = 10; 
+cxt.strokeStyle = 'rgba(120,50,50,0.5)'; 
+cxt.stroke();
+
+</script>
+
+
+canvas画圆形：
+
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+
+var c=document.getElementById("myCanvas");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#000";
+cxt.beginPath();
+cxt.arc(100,50,20,0,Math.PI*2,true);
+cxt.closePath();
+cxt.fill();
+
+</script>
+
+
+canvas画渐变：
+
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+
+
+<script type="text/javascript">
+
+var c=document.getElementById("myCanvas");
+var cxt=c.getContext("2d");
+var grd=cxt.createLinearGradient(0,0,200,10);
+grd.addColorStop(0,"#FF0000");
+grd.addColorStop(1,"#000000");
+cxt.fillStyle=grd;
+cxt.beginPath();
+cxt.arc(100,50,50,0,Math.PI*2,true);
+cxt.closePath();
+cxt.fill();
+
+</script>
+
+
+
+设置阴影：
+
+ctx.shadowOffsetX = 10; // 设置水平位移
+ctx.shadowOffsetY = 10; // 设置垂直位移
+ctx.shadowBlur = 5; // 设置模糊度
+ctx.shadowColor = "rgba(0,0,0,0.5)"; // 设置阴影颜色
+
+ctx.fillStyle = "#CC0000"; 
+ctx.fillRect(10,10,200,100);
+
+
+
+设置渐变颜色：
+{
+    background: #50bebe;
+    background: linear-gradient(to right,#50bebe 0,#41aaaa 50%,#0099cb 100%);
+    background: -moz-linear-gradient(left,#50bebe 0,#41aaaa 50%,#0099cb 100%);
+    background: -webkit-linear-gradient(left,#50bebe 0,#41aaaa 50%,#0099cb 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#50bebe',endColorstr='#0099cb',GradientType=1);
+}
+
+左右渐变：background: -webkit-linear-gradient(left,#EE777E 0%,#94459A);
+
+
+水面倒影效果：
+-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(rgba(250, 250, 250, 0.35)), to(rgba(250, 250, 250, 0.35)));
+
+
+
+svg动画效果：
+
+1.在ai里面将线稿存储为svg,存储时可以看到svg代码按钮，点击复制<svg></svg>里的代码，改id为aa(id可自行命名，和底部的js里的名称统一就行);
+2.调用vivus.js文件；
+3.在底部加上js代码：
+<script>
+var obt1 = new Vivus('aa', {type: 'oneByOne', duration: 200, forceRender: true},svgCall)
+function svgCall()
+{
+
+}
+</script>
+
+注：“aa”是svg代码开头的id名称；
+     type的属性可以设置svg动画的绘图方式，Vivus提供三种SVG路径动画方式：
+     1.delayed：每一个路径元素都在同一时间开始绘制。这是默认的绘制动画方式。
+     2.async：每一条SVG线条都异步进行绘制。它们开统一时间开始和结束绘制动画，因此称之为“异步”。
+     3.oneByOne：SVG线条一条接一条开始绘制动画。这种绘制线条方式是最好的用户体验。
+
+
+
+
+
+谷歌浏览器JS，删除可让网页打开快速：
+<script async src="https://connect.facebook.net/en_US/fbevents.js"></script>
+
+
+
+/*鼠标监听事件*/
+if(document.addEventListener){
+ document.addEventListener('DOMMouseScroll',scrollFunc,false);
+ }//W3C
+ window.onmousewheel=document.onmousewheel=scrollFunc;//IE/Opera/Chrome
+
+
+
+用css 写小三角形：
+
+{border-color:#565656 #fff #fff #fff;border-style:solid;border-width:100px 60px 0 60px;height:0; width:0;} 
+
+
+
+
+获取段落行高及行数：
+
+<script>
+
+var tar = document.getElementById("tar");
+var show = document.getElementById("show");
+function linenum(ele){
+	var style = window.getComputedStyle(ele,null);
+	var lh = parseInt(style.lineHeight,10)
+	var h =parseInt(style.height,10)
+	var num =Math.round(h/lh);
+	return num;
+	
+	}
+function change(){
+	show.innerHTML = "行数："+linenum(tar);
+	}
+window.onresize = change;
+change();
+
+</script>
+
+
+
