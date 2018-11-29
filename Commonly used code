@@ -708,3 +708,13 @@ window.alert = function(name){
 谷歌的jquery cdn
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
 </script>
+
+
+vue.js启动步骤：
+cmd输入npm启动node
+输入淘宝镜像
+$ npm install -g vue-cli
+$ vue init webpack my-project
+$ cd my-project
+$ npm install
+$ npm run dev
