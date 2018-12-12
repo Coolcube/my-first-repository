@@ -1,0 +1,28 @@
+网上测试了n个方式判断是否为360浏览器，目前发现只有这个有效：
+
+
+window.onload = function () {
+
+    //application/vnd.chromium.remoting-viewer 可能为360特有
+    var is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
+
+    if (isChrome() && is360) {
+        alert("检测到是360浏览器");
+    }
+}
+//检测是否是谷歌内核(可排除360及谷歌以外的浏览器)
+function isChrome() {
+    var ua = navigator.userAgent.toLowerCase();
+
+    return ua.indexOf("chrome") > 1;
+}
+//测试mime
+function _mime(option, value) {
+    var mimeTypes = navigator.mimeTypes;
+    for (var mt in mimeTypes) {
+        if (mimeTypes[mt][option] == value) {
+            return true;
+        }
+    }
+    return false;
+}
