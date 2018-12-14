@@ -26,3 +26,13 @@ function _mime(option, value) {
     }
     return false;
 }
+
+
+判断是否为IE浏览器，最新写法，兼容IE11版本：
+function isIE() {
+2     if (!!window.ActiveXObject || "ActiveXObject" in window){
+3         return true;
+4     }else{
+5         return false;
+6     }
+7  }    
