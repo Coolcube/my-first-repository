@@ -718,3 +718,12 @@ $ vue init webpack my-project
 $ cd my-project
 $ npm install
 $ npm run dev
+
+
+清除浮动有效方式：
+.clearfix:after{content:"."; display:block; height:0; visibility:hidden; clear:both;}
+.clearfix{ zoom: 1;}
+
+
+
+
