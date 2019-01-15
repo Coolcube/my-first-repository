@@ -6,3 +6,15 @@ export const  getUrlParam=function(name) {
 	if(r != null) return unescape(r[2]);
 	return null; // 返回参数值
 }
+
+//转换日期格式
+ function getPayTime(payTime){
+ var payTimed = payTime.toString().slice(0,10);
+ return payTimed;
+ }
+ function converPayTime(data) {
+ for (var i = 0; i < data.length; i++) {
+ data[i].payTime = getPayTime(data[i].payTime);
+ }
+ return data;
+ }
