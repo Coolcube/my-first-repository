@@ -1,0 +1,130 @@
+不晓得这个方法能不能用，先保存再说，下次遇到这个需求再试
+
+1 先引进两个js：jquery-1.7.1.min.js和ajaxfileupload.js
+      jquery在1.9版本以下，ajaxfileupload为插件
+
+2 修改ajaxfileupload里的代码：
+     把代码
+
+if(window.ActiveXObject) {  
+    var io = document.createElement('<iframe id="' + frameId + '" name="' + frameId + '" />');  
+     if(typeof uri== 'boolean'){  
+         io.src = 'javascript:false';  
+     }  
+     else if(typeof uri== 'string'){  
+         io.src = uri;  
+     }  
+ }  
+
+修改成
+if(window.ActiveXObject) {  
+   if(jQuery.browser.version=="9.0" || jQuery.browser.version=="10.0"){  
+        var io = document.createElement('iframe');  
+        io.id = frameId;  
+        io.name = frameId;  
+    }else if(jQuery.browser.version=="6.0" || jQuery.browser.version=="7.0" || jQuery.browser.version=="8.0"){  
+        var io = document.createElement('<iframe id="' + frameId + '" name="' + frameId + '" />');  
+        if(typeof uri== 'boolean'){  
+            io.src = 'javascript:false';  
+        }  
+        else if(typeof uri== 'string'){  
+            io.src = uri;  
+        }  
+    }  
+} 
+
+3 html代码 
+ <li class="clearFix upLoadPic" id="upLoadPic">
+            <label  class="fl">上传图片：</label>
+            <input id="uploadLocalPic" type="file"  class="fl" onchange="previewPic()"     
+              name= "multipartfile"/>
+</li>
+ <li class="clearFix button">
+            <a href="javascript:;" class="confirm" id="confirm">确认</a>
+            <a href="javascript:;" class="cancel" id="cancel">取消</a>
+ </li>
+4 js代码
+$("#confirm").click(function(){
+            var file = document.getElementById("uploadLocalPic");
+            var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
+            if(ext!='bmp'){
+                top.artDialog.alert("图片的格式必须为bmp格式！");
+                return;
+            }
+            var isIE = navigator.userAgent.match(/MSIE/)!= null;
+            if(isIE) {   //ie9 上传图片
+                var url= "test.do";
+                $.ajaxFileUpload({
+                    type: "POST",
+                    url: url,    //路径
+//                  data:dataParam,  //参数
+                    secureuri : false,//是否启用安全提交，默认为false
+                    fileElementId:'uploadLocalPic',//文件选择框的id属性
+                    dataType: 'json',//服务器返回的格式
+                    async : false,
+                    success: function(data){
+                        var isSuccess=data.success;
+                        if(!isSuccess){
+                            top.artDialog.alert('上传图片失败');
+                            return;
+                        } 
+                    },
+                  
+                });
+            }else { //ie11,谷歌  上传图片
+                var reader = new FileReader();
+                reader.readAsDataURL(file.files[0]);
+                //监听文件读取结束后事件
+                reader.onloadend = function (e) {
+                    var img=e.target.result;
+                    var url= "test.do";
+                    var param= {content:img};
+                    $.ajax({
+                            url: url,
+                            async:false,
+                            data: param,
+                            type: "Post",
+                            dataType: "json",
+                            success: function (data) {
+                                var isSuccess=data.success;
+                                if(!isSuccess){
+                                    top.artDialog.alert('上传图片失败');
+                                    return;
+                                }
+                            },
+                    })
+                }
+            }
+ 
+    });
+5 java代码
+/**
+     * 保存图片
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "/test")
+    public void test(@RequestParam MultipartFile multipartfile,HttpServletRequest request, HttpServletResponse response) {
+        File file=null;
+        try{
+            // 获取文件名
+            String fileName = multipartfile.getOriginalFilename();
+             // 获取文件名称
+            String prefix=fileName.substring(0,fileName.indexOf("."));
+            // 获取文件后缀
+            String suffix=fileName.substring(fileName.lastIndexOf("."));     
+            file = File.createTempFile(prefix, suffix);
+            // MultipartFile to File            
+            multipartfile.transferTo(file); 
+            
+            //然后，可以操作你业务上的要求
+        }catch (Exception e){
+            CommonUtil.log(e.getMessage());
+        }
+ 
+    }
+--------------------- 
+作者：t0404 
+来源：CSDN 
+原文：https://blog.csdn.net/t0404/article/details/81700408 
+版权声明：本文为博主原创文章，转载请附上博文链接！
