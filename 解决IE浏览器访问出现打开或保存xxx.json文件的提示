@@ -1,0 +1,31 @@
+出现这种问题，只有IE浏览器，其他浏览器都可以正常访问！
+
+解决办法：
+
+1、新建一个 .reg格式的文件，并添加以下内容：
+
+
+
+Windows Registry Editor Version 5.00
+ 
+[HKEY_CLASSES_ROOT\MIME\Database\Content Type\application/json]
+ 
+"CLSID"="{25336920-03F9-11cf-8FD0-00AA00686F13}"
+ 
+"Encoding"=dword:00080000
+ 
+[HKEY_CLASSES_ROOT\MIME\Database\Content Type\text/json]
+ 
+"CLSID"="{25336920-03F9-11cf-8FD0-00AA00686F13}"
+ 
+"encoding"=dword:00080000
+
+2、双击该文件：
+
+
+
+3、点击是：
+
+
+
+4、再次访问，ok！
