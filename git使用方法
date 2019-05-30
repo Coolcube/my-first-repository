@@ -12,3 +12,4 @@ git clone 地址即可下载文件到本地
 git status
 git add .
 git commit -m 'project initialize'
+git push
