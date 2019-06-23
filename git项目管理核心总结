@@ -1,0 +1,19 @@
+cara.pan （master）伪master分支
+  1.所有新开发功能都是从cara.pan 克隆，并不是从master克隆
+		好处:不能影响master，不影响打包
+		↓
+		任务1：分支名'cara.pan-1'  开发完成 pull request 回到cara.pan
+		任务2：cara.pan-2
+		任务3：cara.pan-3
+		任务4：cara.pan-4
+	最终，新功能开发完成之后，pull request cara.pan 回到master
+	注意:每天从master pull 代码到cara.pan 保证代码同步
+	
+	从master 拉分支，cara.pan  修改完之后，回到master
+	
+	从cara.pan 拉分支，cara.pan-1 修改完之后，回到cara.pan
+	但是cara.pan这个分支的由来就是从master  copy的
+	最终，新功能开发完成之后，pull request cara.pan 回到master
+	
+	总结:从哪拉分支，就回到哪去
+	可以把任意分支pull request(合并)到任意分支
