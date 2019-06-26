@@ -1,0 +1,56 @@
+// ES6
+
+// let const
+
+// ES5
+// var
+
+//翻译的资源文件
+let i18n = {
+  zh: {
+    login: { // 模块名
+      userName: '用户名'
+    },
+    homePage: { // 模块名
+      version: '版本'
+    }
+  },
+  en: {
+    login: {
+      userName: 'userName'
+    },
+    homePage: {
+      version: 'Version'
+    }
+  }
+}
+
+// 中文
+// this.$t('login.userName') ==>
+
+let zh1 = {
+  login: { // 模块名
+    userName: '用户名'
+  },
+  homePage: { // 模块名
+    version: '版本'
+  }
+}
+
+let index = {
+  zh: {
+    ...zh1
+  },
+  en: {}
+}
+let index = {
+  zh: {
+    login: { // 模块名
+      userName: '用户名'
+    },
+    homePage: { // 模块名
+      version: '版本'
+    }
+  },
+  en: {}
+}
