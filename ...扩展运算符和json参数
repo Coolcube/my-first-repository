@@ -1,0 +1,104 @@
+/**
+ * Create by CC on 2019/6/26
+ */
+'use strict';
+
+let login = {
+    userName: 'userName'
+}
+let login2 = {
+    userName: 'userName'
+}
+
+//ES 5
+// let test5 = {
+//     login: login,
+//     login2: login2
+// }
+//
+// //Es6
+// //key 和变量名是一致的
+// let test6 = {
+//     login,
+//     login2
+// }
+// console.log(test5)
+// console.log(test6)
+
+//...扩展运算符
+// 把login的值赋给test5
+//ES6
+// let test5 = {
+//     ...login
+// }
+// test5.a = '1'
+//
+// //ES 5
+// //在es5里面.用test6=login,去修改test6的值会影响login的值
+// //为了改变test6的值，又不影响login的值，怎么办??并且test6初始值要与login的值一样
+// //ES5有个深拷贝和浅拷贝
+// let test6 = login
+// // test6.a = '2'
+// console.log(test5)
+// console.log(login)
+// console.log(test6)
+//
+// let a = function (json) {
+//     let a = json['a']
+//     console.log(json['json'])
+// }
+// //ES6新特性
+// //这个参数传进来是一个json，取这个参数的‘key’节点的值,就不需要定义变量获取值let a = json['a']
+// let b = function ( { a,b,c } ) {
+//     console.log(a)
+//     console.log(b)
+//     console.log(c)
+// }
+// b({
+//     a1:'11',
+//     b1:'22',
+//     c1:'33'
+// })
+// a({
+//     json:'11'
+// })
+//
+// //当k是undefined的时候，就变成zh
+// let c = function (k = 'zh') {
+        //ES5的写法
+//      k == k || 'zh'
+//     console.log(k)
+// }
+// c()
+// c('qq')
+
+let d = function (...args) {
+    // console.log(args)
+    //这个是纯数组，args就是一个数组，下标的位置就是参数的位置
+    // console.log(args[0])
+    // console.log(args[1])
+    // console.log(args[2])
+    console.log(args.push('2'))
+    console.log(args)
+}
+//ES6扩展的新特性
+//前面是已知的参数，后面的是未知的参数，不知道有多少个的时候，可以用...args
+let e = function (a, b, c, ...ff) {
+    //剩下的参数的数组
+    console.log(a)
+    console.log(b)
+    console.log(c)
+    console.log(ff)
+}
+let f = function () {
+    //arguments是数组但是又不是数组
+    //但是它不能用数组的方法
+    // console.log(arguments)
+    // console.log(arguments.push('1'))
+    //ES5的arguments
+    console.log(arguments[0])
+    console.log(arguments[1])
+    console.log(arguments[2])
+}
+e(1,2,3,4,5,6,7,8,9,0)
+// f(1,2,3,4)
