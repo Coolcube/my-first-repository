@@ -1,0 +1,130 @@
+/**
+ * Create by CC on 2018/11/10
+ */
+'use strict';
+//cb 就是回调函数
+let asyncFn = (i, cb) => {
+    console.log(4)
+    setTimeout(() => {
+        //这里是异步
+        //这里是执行的代, 码
+        console.log(5)
+        //这里才是回调的返回值相当于return (''),同步的返回值就是return 异步的返回值就是callback
+        //习惯性的callback(err)第一个参数默认是错误的结果
+        cb('err', 'success', 'fdd', 'fdfd')
+        return 'qq'//这个结果是拿不到的 rars
+    }, i)
+    cb('ppp')
+    console.log(6)
+}
+
+function fn4(i) {
+    //代码...
+    //因为对于异步来说,是无法获取返回值的
+    //代码异步了,
+    // result的值从cb中获取
+    //执行代码
+    console.log(0)
+    let f = asyncFn(100, err => {
+        //异步不可控的执行
+        console.log(err)
+        // console.log(result)//1111
+        // console.log(a)//
+        // console.log(b)
+    });
+    console.log(7)
+    let fd = asyncFn(100, result => {
+        //异步不可控的执行
+        console.log(3)
+        // console.log(result)//1111
+        // console.log(a)//
+        // console.log(b)
+    });
+    console.log(1)
+    //执行代码
+    // console.log(f)
+    //dd
+    //222
+    //ss
+
+    //得到f = ss
+    // if(i>0){
+    //     return 'success'
+    // }else{
+    //     return 'fail'
+    // }
+    // return '';//成功的?还是失败的?
+}
+
+let pro = new Promise((resolve, reject) => {
+    //异步的同步写法
+    // cb(err, result)
+    // ||    ||
+    // reject  resolve
+    //resolve 成功
+    //reject 失败
+    //相当于方法的返回值
+    // resolve('success')//返回成功结果
+    setTimeout(() => {
+        resolve('success')
+    }, 1000)
+})
+
+// console.log(new Date())
+//如果不使用promise,那么就得使用callback获取返回值
+// pro.then((result) => {
+//     //等待异步执行完之后，还有处理一堆业务
+// }).catch(err=>{
+//     //失败的
+//     console.log(err)
+// })
+//     .finally(() => {
+//     //永远最后执行
+//     console.log('finally')
+// })
+// console.log(err)
+// console.log(res)
+// console.log('1')
+// //按照刚才的异步,pro的返回值是获取不到的，所以err,和result就是undefined
+// let e = async function () {
+//     return pro.then(result => [null, result]).catch(err => [err])
+// }
+//  pro.then(result => [null, result]).catch(err => [err])
+// console.log(err2)
+// console.log(result)
+
+//页面请求100个接口
+//let fn1 = await fn1
+//let fn2 = await fn2
+//let fn3 = await fn3
+//let fn4 = await fn4
+//let fn5 = await fn5
+
+let fn2 = function () {
+    return new Promise((resolve, reject) => {
+        //先成功后失败，在成功时，promise的状态已经是成功了,所以最后是成功
+        reject('rej')
+        resolve('res')
+    })
+}
+//Promise的状态只能改变一次,一旦状态变成什么就是什么，一旦成功了,就是成功
+let fn = async function () {
+    //规定返回值第一个参数是err
+    //return [null, res] = cb(null, res)
+    let [err, res] = await fn2().then(res => [null, res]).catch(err => [err])
+    console.log(err)
+    console.log(res)
+    let qq;
+    fn2().then(res => {
+        qq = res
+        // console.log(res)
+    }).catch(err => {
+        // console.log(err)
+    })
+    console.log(qq)
+    //我想获取fn2的返回值怎么办
+    //。。。。
+    //
+}
+fn()
+
