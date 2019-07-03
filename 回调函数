@@ -1,0 +1,85 @@
+/**
+ * Create by CC on 2018/11/10
+ */
+'use strict';
+//cb 就是回调函数
+let asyncFn = (i, cb) => {
+        console.log(4)
+    setTimeout(() => {
+        //这里是异步
+        //这里是执行的代, 码
+        console.log(5)
+        //这里才是回调的返回值相当于return (''),同步的返回值就是return 异步的返回值就是callback
+        return 'qq'//这个结果是拿不到的 rars
+    }, i)
+    cb('ppp')
+    console.log(6)
+}
+
+function fn(i) {
+    //代码...
+    //因为对于异步来说,是无法获取返回值的
+    //代码异步了,
+    // result的值从cb中获取
+    //执行代码
+    console.log(0)
+    let f = asyncFn(100, result => {
+        //异步不可控的执行
+        console.log(2)
+        // console.log(result)//1111
+        // console.log(a)//
+        // console.log(b)
+    });
+    console.log(7)
+    let fd = asyncFn(1000, result => {
+        //异步不可控的执行
+        console.log(3)
+        // console.log(result)//1111
+        // console.log(a)//
+        // console.log(b)
+    });
+    console.log(1)
+    //执行代码
+    // console.log(f)
+    //dd
+    //222
+    //ss
+
+    //得到f = ss
+    // if(i>0){
+    //     return 'success'
+    // }else{
+    //     return 'fail'
+    // }
+    // return '';//成功的?还是失败的?
+}
+fn()
+
+//0  1  4  2  3  5
+//0 1 4 4  5 2 5 3
+
+
+// console.log(111)
+// //输出asyncFn
+// asyncFn()
+// console.log(333)
+
+//ES5 就不说
+//ES6 promise
+//axios
+
+let pro = new Promise((resolve,reject) => {
+    //异步的同步写法
+    //resolve 成功
+    //reject 失败
+    //相当于方法的返回值
+    // resolve('success')//返回成功结果
+    //reject()//返回失败结果
+})
+//如果不使用promise,那么就得使用callback获取返回值
+pro.then((result) => console.log(result))
+    .catch(err=>{console.log(err)})
+    .finally(() => {
+        //永远最后执行
+    console.log('finally')
+})
