@@ -1,0 +1,69 @@
+/**
+ * Create by CC on 2019/7/5
+ */
+'use strict';
+
+
+//js 面向对象
+//面向过程  比如你要某某地方买吃的 你要搭11路车到某个路口，转3路到目的地
+//面向对象  比如你要某某地方买吃的 你只要打电话给君子（对象），他带回来
+let clazz = function () {//构造函数
+    //实例化对象 //所有的方法，封装成对象，以后要用，直接拿来调即可
+
+    this.userName = ''//成员变量,在任何一个方法中都能通过this.出来
+    this.password = ''
+    this.hackReset = false
+    //私有变量和私有方法。静态方法
+    //在js里面,私有变量使用_开头起名
+    //严格意义上面，js是没有私有和成员的说法
+    //为了不暴露出去使用的变量，就定义成私有
+    this._private = 'private'
+    // this.create()
+}
+clazz.staticFn = function(){
+    console.log('staticFN')
+}
+clazz.prototype._aaa = function(){
+
+}
+clazz.prototype.create = function () {//成员方法
+    console.log('init()')
+    this.mounted()
+    this.propers = 'aa'//propers这变量是针对create有效而已
+}
+
+clazz.prototype.mounted = function () {
+    console.log('mounted()')
+}
+
+var detail = new clazz()
+// detail._private 因为还能改变_private的值，所以不能严格来说是私有的
+//但是detail.的时候，是不容易发现有_private这个变量，才认为是私有
+// detail.create()
+console.log(detail.propers)
+//静态方法和成员方法的区别
+//静态方法不需要new对象使用,直接通过类名.使用
+//成员方法需要new对象
+
+clazz.staticFn()
+
+
+
+
+
+
+// let dd = new clazz();//实例化对象
+//现在create 输出了init(),我想在原本的调用create的时候，先输出'beforeCreate',又不影响create，怎么做
+// dd.aa()
+// dd.create()
+// dd.mounted()
+//beforeCreate()
+//init()
+//mounted()
+
+//如何改造clazz这个类的create这个方法,在后面你调用create的时候输出beforeCreate
+//以后你改造这个类之后，在你后续的使用中，都按照上面的逻辑执行初始化操作
+
+//然后clazz这个对象的源码是你不能更改的
+
+// console.log(dd.hackReset);//对象里面的字段
